@@ -15,26 +15,37 @@ export function cn(...inputs: ClassValue[]) {
 
 type Interview = Doc<"interviews">;
 type User = Doc<"users">;
+type GroupedInterviews = {
+  succeeded: Interview[];
+  failed: Interview[];
+  completed: Interview[];
+  upcoming: Interview[];
+};
 
-export const groupInterviews = (interviews: Interview[]) => {
-  if (!interviews) return {};
+export const groupInterviews = (interviews: Interview[]): GroupedInterviews => {
+  if (!interviews) {
+    return { succeeded: [], failed: [], completed: [], upcoming: [] };
+  }
 
-  return interviews.reduce((acc: any, interview: Interview) => {
-    const date = new Date(interview.startTime);
-    const now = new Date();
+  return interviews.reduce(
+    (acc: GroupedInterviews, interview: Interview) => {
+      const date = new Date(interview.startTime);
+      const now = new Date();
 
-    if (interview.status === "succeeded") {
-      acc.succeeded = [...(acc.succeeded || []), interview];
-    } else if (interview.status === "failed") {
-      acc.failed = [...(acc.failed || []), interview];
-    } else if (isBefore(date, now)) {
-      acc.completed = [...(acc.completed || []), interview];
-    } else if (isAfter(date, now)) {
-      acc.upcoming = [...(acc.upcoming || []), interview];
-    }
+      if (interview.status === "succeeded") {
+        acc.succeeded.push(interview);
+      } else if (interview.status === "failed") {
+        acc.failed.push(interview);
+      } else if (isBefore(date, now)) {
+        acc.completed.push(interview);
+      } else if (isAfter(date, now)) {
+        acc.upcoming.push(interview);
+      }
 
-    return acc;
-  }, {});
+      return acc;
+    },
+    { succeeded: [], failed: [], completed: [], upcoming: [] }
+  );
 };
 
 export const getCandidateInfo = (users: User[], candidateId: string) => {

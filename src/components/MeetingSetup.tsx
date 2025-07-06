@@ -1,4 +1,8 @@
-import { DeviceSettings, useCall, VideoPreview } from "@stream-io/video-react-sdk";
+import {
+  DeviceSettings,
+  useCall,
+  VideoPreview,
+} from "@stream-io/video-react-sdk";
 import { useEffect, useState } from "react";
 import { Card } from "./ui/card";
 import { CameraIcon, MicIcon, SettingsIcon } from "lucide-react";
@@ -9,9 +13,7 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
   const [isCameraDisabled, setIsCameraDisabled] = useState(true);
   const [isMicDisabled, setIsMicDisabled] = useState(false);
 
-  const call = useCall();
-
-  if (!call) return null;
+  const call: any = useCall();
 
   useEffect(() => {
     if (isCameraDisabled) call.camera.disable();
@@ -28,6 +30,8 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
     onSetupComplete();
   };
 
+  if (!call) return null;
+
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-background/95">
       <div className="w-full max-w-[1200px] mx-auto">
@@ -36,7 +40,9 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
           <Card className="md:col-span-1 p-6 flex flex-col">
             <div>
               <h1 className="text-xl font-semibold mb-1">Camera Preview</h1>
-              <p className="text-sm text-muted-foreground">Make sure you look good!</p>
+              <p className="text-sm text-muted-foreground">
+                Make sure you look good!
+              </p>
             </div>
 
             {/* VIDEO PREVIEW */}
@@ -54,7 +60,9 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
               {/* MEETING DETAILS  */}
               <div>
                 <h2 className="text-xl font-semibold mb-1">Meeting Details</h2>
-                <p className="text-sm text-muted-foreground break-all">{call.id}</p>
+                <p className="text-sm text-muted-foreground break-all">
+                  {call.id}
+                </p>
               </div>
 
               <div className="flex-1 flex flex-col justify-between">
@@ -74,7 +82,9 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
                     </div>
                     <Switch
                       checked={!isCameraDisabled}
-                      onCheckedChange={(checked) => setIsCameraDisabled(!checked)}
+                      onCheckedChange={(checked) =>
+                        setIsCameraDisabled(!checked)
+                      }
                     />
                   </div>
 
@@ -105,7 +115,9 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
                       </div>
                       <div>
                         <p className="font-medium">Settings</p>
-                        <p className="text-sm text-muted-foreground">Configure devices</p>
+                        <p className="text-sm text-muted-foreground">
+                          Configure devices
+                        </p>
                       </div>
                     </div>
                     <DeviceSettings />
@@ -118,7 +130,8 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
                     Join Meeting
                   </Button>
                   <p className="text-xs text-center text-muted-foreground">
-                    Do not worry, our team is super friendly! We want you to succeed. 🎉
+                    Do not worry, our team is super friendly! We want you to
+                    succeed. 🎉
                   </p>
                 </div>
               </div>

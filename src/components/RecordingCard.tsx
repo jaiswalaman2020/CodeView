@@ -11,8 +11,8 @@ function RecordingCard({ recording }: { recording: CallRecording }) {
     try {
       await navigator.clipboard.writeText(recording.url);
       toast.success("Recording link copied to clipboard");
-    } catch (error) {
-      toast.error("Failed to copy link to clipboard");
+    } catch (error: any) {
+      toast.error("Failed to copy link to clipboard", error?.message);
     }
   };
 
@@ -56,7 +56,10 @@ function RecordingCard({ recording }: { recording: CallRecording }) {
         </div>
       </CardContent>
       <CardFooter className="gap-2">
-        <Button className="flex-1" onClick={() => window.open(recording.url, "_blank")}>
+        <Button
+          className="flex-1"
+          onClick={() => window.open(recording.url, "_blank")}
+        >
           <PlayIcon className="size-4 mr-2" />
           Play Recording
         </Button>

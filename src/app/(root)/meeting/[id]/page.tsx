@@ -10,9 +10,15 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 
 function MeetingPage() {
-  const { id } = useParams();
+  const params = useParams();
+  const id =
+    typeof params.id === "string"
+      ? params.id
+      : Array.isArray(params.id)
+        ? params.id[0]
+        : undefined;
   const { isLoaded } = useUser();
-  const { call, isCallLoading } = useGetCallById(id);
+  const { call, isCallLoading } = useGetCallById(id ?? ""); // fallback to empty string if undefined
 
   const [isSetupComplete, setIsSetupComplete] = useState(false);
 
