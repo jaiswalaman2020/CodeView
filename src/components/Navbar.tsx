@@ -23,7 +23,7 @@ function Navbar() {
         <SignedIn>
           <div className="flex items-center space-x-4 ml-auto">
             <DasboardBtn />
-            <ModeToggle />
+            {/* <ModeToggle /> */}
             <UserButton />
           </div>
         </SignedIn>

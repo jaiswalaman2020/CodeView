@@ -84,6 +84,8 @@ function CodeEditor() {
                         <div className="flex items-center gap-2">
                           <Image
                             src={`/${language}.png`}
+                            width={20}
+                            height={20}
                             alt={language}
                             className="w-5 h-5 object-contain"
                           />
@@ -99,6 +101,8 @@ function CodeEditor() {
                             <Image
                               src={`/${lang.id}.png`}
                               alt={lang.name}
+                              width={20}
+                              height={20}
                               className="w-5 h-5 object-contain"
                             />
                             {lang.name}

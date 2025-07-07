@@ -47,7 +47,7 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
 
             {/* VIDEO PREVIEW */}
             <div className="mt-4 flex-1 min-h-[400px] rounded-xl overflow-hidden bg-muted/50 border relative">
-              <div className="absolute inset-0">
+              <div className="absolute inset-0 h-full w-full flex items-center justify-center">
                 <VideoPreview className="h-full w-full" />
               </div>
             </div>
@@ -82,6 +82,7 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
                     </div>
                     <Switch
                       checked={!isCameraDisabled}
+                      className=" data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-red-600"
                       onCheckedChange={(checked) =>
                         setIsCameraDisabled(!checked)
                       }
@@ -103,6 +104,7 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
                     </div>
                     <Switch
                       checked={!isMicDisabled}
+                      className=" data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-red-600"
                       onCheckedChange={(checked) => setIsMicDisabled(!checked)}
                     />
                   </div>
@@ -126,7 +128,11 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
 
                 {/* JOIN BTN */}
                 <div className="space-y-3 mt-8">
-                  <Button className="w-full" size="lg" onClick={handleJoin}>
+                  <Button
+                    className="w-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white hover:opacity-90 transition-opacity"
+                    size="lg"
+                    onClick={handleJoin}
+                  >
                     Join Meeting
                   </Button>
                   <p className="text-xs text-center text-muted-foreground">

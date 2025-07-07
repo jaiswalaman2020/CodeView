@@ -54,7 +54,9 @@ function DashboardPage() {
     <div className="container mx-auto py-10">
       <div className="flex items-center mb-8">
         <Link href="/schedule">
-          <Button>Schedule New Interview</Button>
+          <Button className="gap-2 font-medium bg-gradient-to-r from-emerald-600 to-teal-500 text-white hover:opacity-90 transition-opacity">
+            Schedule New Interview
+          </Button>
         </Link>
       </div>
 
