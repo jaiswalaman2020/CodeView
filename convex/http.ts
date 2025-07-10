@@ -11,7 +11,6 @@ http.route({
   method: "POST",
   handler: httpAction(async (ctx, request) => {
     const webhookSecret = process.env.CLERK_WEBHOOK_SECRET;
-    console.log(webhookSecret);
 
     if (!webhookSecret) {
       throw new Error("Missing CLERK_WEBHOOK_SECRET environment variable");
